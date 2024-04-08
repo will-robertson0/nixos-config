@@ -113,7 +113,26 @@
 	vimdiffAlias = true;
 
 	extraConfig = ''
-		${builtins.readFile ./nvim/options.lua}
+		-- assigning <leader> key to space
+		vim.g.mapleader = ' '
+		vim.g.maplocalleader = ' '
+
+		vim.o.clipboard = 'unnamedplus'
+
+		vim.o.number = true
+		-- vim.o.relativenumber = true
+
+		vim.o.signcolumn = 'yes'
+
+		vim.o.tabstop = 4
+		vim.o.shiftwidth = 4
+
+		vim.o.updatetime = 300
+
+		-- makes it so damn ugly, but is required for nvim-colorizer
+		vim.o.termguicolors = true
+
+		vim.o.mouse = 'a'
 	'';
 	
 	plugins = with pkgs.vimPlugins; [
