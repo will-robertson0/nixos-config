@@ -10,9 +10,11 @@
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.default
 	  ./features/mako.nix
+	  inputs.nix-colors.homeManagerModules.default
   ];
 
   colorScheme = inputs.nix-colors.colorSchemes.everforest;
+
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
