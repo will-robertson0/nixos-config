@@ -6,10 +6,13 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+  [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.default
-    ];
+	  ./features/mako.nix
+  ];
+
+  colorScheme = inputs.nix-colors.colorSchemes.everforest;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
