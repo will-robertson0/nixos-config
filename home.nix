@@ -1,6 +1,15 @@
 { config, pkgs, inputs, ... }:
 
 {
+  imports = [
+	inputs.nix-colors.homeManagerModules.default
+  	./features/mako.nix
+	./other/corvine.yaml
+  ];
+
+  colorScheme = ./other/corvine.yaml;
+  #inputs.nix-colors.colorSchemes.everforest;
+
   home.username = "wjr";
   home.homeDirectory = "/home/wjr";
 
@@ -106,7 +115,11 @@
 		   config = "require(\"Comment\").setup()";
 		}
 
-		nvim-colorizer-lua
+		{
+			plugin = nvim-colorizer-lua;
+			type = "lua";
+			config = "require(\"colorizer\").setup()";
+		}
 	];
   };
 
