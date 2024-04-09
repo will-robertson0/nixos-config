@@ -4,11 +4,7 @@
   imports = [
 	inputs.nix-colors.homeManagerModules.default
   	./features/mako.nix
-	./other/corvine.yaml
   ];
-
-  colorScheme = ./other/corvine.yaml;
-  #inputs.nix-colors.colorSchemes.everforest;
 
   home.username = "wjr";
   home.homeDirectory = "/home/wjr";
@@ -124,5 +120,32 @@
   };
 
 
+  
 
+
+
+
+  colorScheme = {
+  	slug = "corvine";
+	name = "Corvine";
+	author = "arzg (https://github.com/arzg/vim-corvine)";
+	palette = {
+		base00 = "#262626"; # bg0 -- used to be 3a3a3a
+		base01 = "#d78787";
+		base02 = "#87af5f";
+		base03 = "#d7d7af";
+		base04 = "#87afd7";
+		base05 = "#afafd7";
+		base06 = "#87d7d7";
+		base07 = "#c6c6c6";
+		base08 = "#626262";
+		base09 = "#ffafaf";
+		base0A = "#afd787";
+		base0B = "#d7d787";
+		base0C = "#87d7ff";
+		base0D = "#d7afd7";
+		base0E = "#5fd7d7";
+		base0F = "#eeeeee";
+	};
+  };
 }
