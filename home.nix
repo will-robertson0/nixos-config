@@ -8,7 +8,6 @@
 
   home.username = "wjr";
   home.homeDirectory = "/home/wjr";
-
   home.stateVersion = "23.11"; # don't change
 
   home.packages = [
@@ -139,6 +138,8 @@
 				require(\"lualine\").setup({
 					icons_enabled = true,
 					theme = 'carbonfox',
+					section_separators = '',
+					component_separators = '',
 				})";
 		}
 
@@ -148,9 +149,6 @@
 		}
 	];
   };
-
-
-  
 
 
 
