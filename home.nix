@@ -64,7 +64,7 @@
   	enable = true;
 	theme = "Corvine"; # select from kitty +kitten themes
 	settings = {
-		background_opacity = "0.8";
+		background_opacity = "0.84";
 		confirm_os_window_close = 0;
 		scrollback_lines = "10000";
 		window_padding_width = 8;
@@ -75,7 +75,11 @@
 
 
   # neovim
-  programs.neovim = {
+  programs.neovim = 
+  let
+  	toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
+  in
+  {
   	enable = true;
 	defaultEditor = true;
 	viAlias = true;
@@ -115,6 +119,32 @@
 			plugin = nvim-colorizer-lua;
 			type = "lua";
 			config = "require(\"colorizer\").setup()";
+		}
+
+		{
+			plugin = nightfox-nvim;
+			type = "lua";
+			config = "
+				require(\'nightfox\').setup({
+					options = { transparent = true, },
+				})
+				vim.cmd(\"colorscheme carbonfox\")
+				local palettes = { all = { green = \"#87af5f\", }, }";
+		}
+
+		{
+			plugin = lualine-nvim;
+			type = "lua";
+			config = "
+				require(\"lualine\").setup({
+					icons_enabled = true,
+					theme = 'carbonfox',
+				})";
+		}
+
+		{
+			plugin = nvim-lspconfig;
+			config = toLuaFile ./nvim/plugins/lsp.lua;
 		}
 	];
   };
