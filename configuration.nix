@@ -98,17 +98,13 @@
 #		})
 #	)
 	dolphin
-	# ttf-font-awesome
-	#pamix # this is how i adjust volume (for now?)
 	pulsemixer
 	discord
-	vesktop # screensharing with audio on wayland. run using 'vesktop'
+	vesktop # discord with screensharing with audio on waylandd
 	libnotify # for mako
 	mako # notification daemon
-	#alacritty
-	fish
 	btop
-	networkmanagerapplet
+    networkmanagerapplet
 	grim
 	slurp
 	wl-clipboard
@@ -120,7 +116,6 @@
 	tidal-hifi
 	bitwarden
 	bitwarden-cli # bw
-	# look into rofi-rbw-wayland or similar
 	vifm-full
 	ranger # also a file manager
 	floorp # try fastfox

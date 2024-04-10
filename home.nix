@@ -128,7 +128,10 @@
 					options = { transparent = true, },
 				})
 				vim.cmd(\"colorscheme carbonfox\")
-				local palettes = { all = { green = \"#87af5f\", }, }";
+                local palettes = {
+                  carbonfox = {
+                    green = { base = \"##87af5f\", bright = \"##87af5f\", dim = \"##87af5f\" },
+                } },";
 		}
 
 		{
@@ -143,10 +146,67 @@
 				})";
 		}
 
+        /*{ 
+            plugin = telescope-file-browser-nvim;
+            type = "lua";
+            config = "
+                require(\"telescope\").setup { extensions = { file_browser = {
+                    theme = \"carbonfox\",
+                }, }, }
+                -- vim.keymap.set(\"n\", \"<space>fb\", \":Telescope file_browser<CR>\")
+                vim.keymap.set(\"n\", \"<leader>fb\", function()
+                    require(\"telescope\").extensions.file_browser.file_browser()
+                end)
+                ";
+        } */
+
 		{
 			plugin = nvim-lspconfig;
 			config = toLuaFile ./nvim/plugins/lsp.lua;
 		}
+
+		{
+			plugin = nvim-cmp;
+			config = toLuaFile ./nvim/plugins/cmp.lua;
+		}
+
+		{
+			plugin = telescope-nvim;
+			config = toLuaFile ./nvim/plugins/telescope.lua;
+		}
+
+		{
+			plugin = (nvim-treesitter.withPlugins (p: [
+				p.tree-sitter-nix
+				p.tree-sitter-vim
+				p.tree-sitter-bash
+				p.tree-sitter-lua
+				p.tree-sitter-python
+				p.tree-sitter-json
+				# p.tree-sitter-rust
+				# p.tree-sitter-c
+			]));
+			config = toLuaFile ./nvim/plugins/treesitter.lua;
+		}
+
+
+            
+
+		vim-nix
+		
+		neodev-nvim
+		
+		telescope-fzf-native-nvim
+		
+		cmp_luasnip
+
+		cmp-nvim-lsp
+		
+		luasnip
+
+		friendly-snippets
+		
+		nvim-web-devicons
 	];
   };
 
