@@ -127,6 +127,7 @@
 	cava
 	nerdfonts
 	ripgrep
+    fish
   ];
 
 
