@@ -127,7 +127,7 @@
 	cava
 	ripgrep
     fish
-
+    pfetch
   ];
 
 
