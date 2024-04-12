@@ -64,11 +64,14 @@
     theme = "Corvine"; # select from kitty +kitten themes
     shellIntegration.enableFishIntegration = true;
 	settings = {
-		background_opacity = "0.84";
+		background_opacity = "0.84"; # 0.84
 		confirm_os_window_close = 0;
 		scrollback_lines = "10000";
 		window_padding_width = 8;
         shell = "fish";
+        # background_image = "/home/wjr/Downloads/IMG_20231228_013528_973.png";
+        # background_image_layout = "scaled";
+        # background_tint = "0.0";
 	};
   };
 
@@ -118,6 +121,7 @@
 	'';
 	
 	plugins = with pkgs.vimPlugins; [
+
 		{
 		   plugin = comment-nvim;
 		   type = "lua";
