@@ -90,6 +90,7 @@
   programs.neovim = 
   let
   	toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
+    toLua = str: "lua << EOF\n${str}\nEOF\n";
   in
   {
   	enable = true;
@@ -98,27 +99,7 @@
 	vimAlias = true;
 	vimdiffAlias = true;
 
-	extraLuaConfig = ''
-		-- assigning <leader> key to space
-		vim.g.mapleader = ' '
-		vim.g.maplocalleader = ' '
-
-		vim.o.clipboard = 'unnamedplus'
-
-		vim.o.number = true
-		-- vim.o.relativenumber = true
-
-		vim.o.signcolumn = 'yes'
-
-		vim.o.tabstop = 4
-		vim.o.shiftwidth = 4
-
-		vim.o.updatetime = 300
-
-		vim.o.termguicolors = true
-
-		vim.o.mouse = 'a'
-	'';
+	extraLuaConfig = builtins.readFile ./nvim/init.lua;
 	
 	plugins = with pkgs.vimPlugins; [
 
@@ -136,43 +117,18 @@
 
 		{
 			plugin = nightfox-nvim;
-			type = "lua";
-			config = "
-				require(\'nightfox\').setup({
-					options = { transparent = true, },
-				})
-				vim.cmd(\"colorscheme carbonfox\")
-                local palettes = {
-                  carbonfox = {
-                    green = { base = \"##87af5f\", bright = \"##87af5f\", dim = \"##87af5f\" },
-                } },";
-		}
+			config = toLuaFile ./nvim/plugins/nightfox.lua;
+        }
 
 		{
 			plugin = lualine-nvim;
-			type = "lua";
-			config = "
-				require(\"lualine\").setup({
-					icons_enabled = true,
-					theme = 'carbonfox',
-					section_separators = '',
-					component_separators = '',
-				})";
-		}
+			config = toLuaFile ./nvim/plugins/lualine.lua;
+		} 
 
-        # { 
-        #     plugin = telescope-file-browser-nvim;
-        #     type = "lua";
-        #     config = "
-        #         require(\"telescope\").setup { extensions = { file_browser = {
-        #             theme = \"carbonfox\",
-        #         }, }, }
-        #         -- vim.keymap.set(\"n\", \"<space>fb\", \":Telescope file_browser<CR>\")
-        #         vim.keymap.set(\"n\", \"<leader>fb\", function()
-        #             require(\"telescope\").extensions.file_browser.file_browser()
-        #         end)
-        #         ";
-        # }
+        { 
+            plugin = telescope-file-browser-nvim;
+            config = toLuaFile ./nvim/plugins/telescope-file-browser.lua;
+        }
 
 		{
 			plugin = nvim-lspconfig;
