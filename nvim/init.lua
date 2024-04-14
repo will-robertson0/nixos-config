@@ -18,3 +18,7 @@ vim.o.termguicolors = true
 
 vim.o.mouse = 'a'
 
+vim.cmd("set shell=/run/current-system/sw/bin/fish")
+
+require("telescope").load_extension "file_browser"
+

@@ -1,4 +1,4 @@
-require(\"lualine\").setup({
+require("lualine").setup({
 	icons_enabled = true,
 	theme = 'carbonfox',
 	section_separators = '',

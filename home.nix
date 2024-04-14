@@ -4,6 +4,7 @@
   imports = [
 	inputs.nix-colors.homeManagerModules.default
   	./features/mako.nix
+    ./features/alacritty.nix
   ];
 
   home.username = "wjr";
@@ -67,13 +68,27 @@
 		background_opacity = "0.84"; # 0.84
 		confirm_os_window_close = 0;
 		scrollback_lines = "10000";
-		window_padding_width = 8;
+		# window_padding_width = 8;
         shell = "fish";
         # background_image = "/home/wjr/Downloads/IMG_20231228_013528_973.png";
         # background_image_layout = "scaled";
         # background_tint = "0.0";
+        font_family = "JuliaMono";
 	};
   };
+
+
+
+  # programs.alacritty = {
+  #   enable = true;
+  #   settings = {
+  #     shell = "fish";
+  #     window = {
+  #       blur = true;
+  #       opacity = 0.84;
+  #     };
+  #   };
+  # };
 
 
 
@@ -153,14 +168,11 @@
 				p.tree-sitter-lua
 				p.tree-sitter-python
 				p.tree-sitter-json
-				# p.tree-sitter-rust
-				# p.tree-sitter-c
+				p.tree-sitter-rust
+				p.tree-sitter-c
 			]));
 			config = toLuaFile ./nvim/plugins/treesitter.lua;
 		}
-
-
-            
 
 		vim-nix
 		
@@ -180,6 +192,21 @@
 	];
   };
 
+
+
+  # programs.gtk = {
+  #   enable = true;
+  #   theme = {
+  #     name = "Adwaita-dark";
+  #     package = pkgs.gnome.gnome-themes-extra;
+  #   };
+  # };
+  #
+  # programs.qt = {
+  #   enable = true;
+  #   platformTheme = "gnome";
+  #   style = "adwaita-dark";
+  # };
 
 
 

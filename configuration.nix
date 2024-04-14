@@ -128,6 +128,7 @@
 	ripgrep
     fish
     pfetch
+    alacritty
   ];
 
 
@@ -137,6 +138,7 @@
     iosevka
     material-design-icons
 	nerdfonts
+    julia-mono
   ];
 
 
