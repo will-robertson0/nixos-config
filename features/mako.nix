@@ -9,7 +9,7 @@
 		borderSize = 1;
 		textColor = "#${config.colorScheme.palette.base0F}";
 		layer = "overlay";
-		defaultTimeout = 50000;
+		defaultTimeout = 10;
 		margin = "15";
 		padding = "15";
 	};

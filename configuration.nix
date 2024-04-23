@@ -129,6 +129,7 @@
     fish
     pfetch
     alacritty
+    nh
   ];
 
 
