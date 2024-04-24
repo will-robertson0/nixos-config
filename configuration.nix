@@ -172,11 +172,11 @@
   };
   # this might make hyprland run on startup. source also suggests:
     # services.getty.autologinUser = "wjr";
-  environment.interactiveShellInit = ''
-  if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-      dbus-run-session Hyprland
-  fi
-  '';
+  # environment.interactiveShellInit = ''
+  # if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+  #     dbus-run-session Hyprland
+  # fi
+  # '';
 
 
 
