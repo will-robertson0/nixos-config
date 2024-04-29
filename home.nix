@@ -29,7 +29,7 @@
     # ".screenrc".source = dotfiles/screenrc;
 
     # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
+    # ".gradle/radle.properties".text = ''
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
@@ -132,32 +132,32 @@
 
 		{
 			plugin = nightfox-nvim;
-			config = toLuaFile ./nvim/plugins/nightfox.lua;
+			config = toLuaFile ./nvim/plugin/nightfox.lua;
         }
 
 		{
 			plugin = lualine-nvim;
-			config = toLuaFile ./nvim/plugins/lualine.lua;
-		} 
+			config = toLuaFile ./nvim/plugin/lualine.lua;
+        } 
 
         { 
             plugin = telescope-file-browser-nvim;
-            config = toLuaFile ./nvim/plugins/telescope-file-browser.lua;
+            config = toLuaFile ./nvim/plugin/telescope-file-browser.lua;
         }
 
 		{
 			plugin = nvim-lspconfig;
-			config = toLuaFile ./nvim/plugins/lsp.lua;
+			config = toLuaFile ./nvim/plugin/lsp.lua;
 		}
 
 		{
 			plugin = nvim-cmp;
-			config = toLuaFile ./nvim/plugins/cmp.lua;
+			config = toLuaFile ./nvim/plugin/cmp.lua;
 		}
 
 		{
 			plugin = telescope-nvim;
-			config = toLuaFile ./nvim/plugins/telescope.lua;
+			config = toLuaFile ./nvim/plugin/telescope.lua;
 		}
 
 		{
@@ -171,8 +171,13 @@
 				p.tree-sitter-rust
 				p.tree-sitter-c
 			]));
-			config = toLuaFile ./nvim/plugins/treesitter.lua;
+			config = toLuaFile ./nvim/plugin/treesitter.lua;
 		}
+
+        {
+            plugin = undotree;
+            config = toLuaFile ./nvim/plugin/undotree.lua;
+        }
 
 		vim-nix
 		
@@ -189,6 +194,8 @@
 		friendly-snippets
 		
 		nvim-web-devicons
+
+        playground # treesitter playground
 	];
   };
 
@@ -213,7 +220,7 @@
   colorScheme = {
   	slug = "corvine";
 	name = "Corvine";
-	author = "arzg (https://github.com/arzg/vim-corvine)";
+	author = "arzg (https://ithub.com/arzg/vim-corvine)";
 	palette = {
 		base00 = "#262626"; # bg0 -- used to be 3a3a3a
 		base01 = "#d78787";

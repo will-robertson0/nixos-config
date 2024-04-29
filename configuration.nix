@@ -130,6 +130,8 @@
     pfetch
     alacritty
     nh
+    joplin
+    joplin-desktop
   ];
 
 
