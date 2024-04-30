@@ -114,8 +114,12 @@
 	vimAlias = true;
 	vimdiffAlias = true;
 
-	extraLuaConfig = builtins.readFile ./nvim/init.lua;
-	
+    extraPackages = with pkgs; [
+      lua-language-server
+      wl-clipboard
+      rust-analyzer
+    ];
+
 	plugins = with pkgs.vimPlugins; [
 
 		{
@@ -130,34 +134,46 @@
 			config = "require(\"colorizer\").setup()";
 		}
 
+        {
+            plugin = undotree;
+            type = "lua";
+            config = builtins.readFile(./nvim/plugin/undotree.lua);
+        }
+
 		{
 			plugin = nightfox-nvim;
-			config = toLuaFile ./nvim/plugin/nightfox.lua;
+            type = "lua";
+			config = builtins.readFile(./nvim/plugin/nightfox.lua);
         }
 
 		{
 			plugin = lualine-nvim;
-			config = toLuaFile ./nvim/plugin/lualine.lua;
+            type = "lua";
+			config = builtins.readFile(./nvim/plugin/lualine.lua);
         } 
 
         { 
             plugin = telescope-file-browser-nvim;
-            config = toLuaFile ./nvim/plugin/telescope-file-browser.lua;
+            type = "lua";
+            config = builtins.readFile(./nvim/plugin/telescope-file-browser.lua);
         }
 
 		{
 			plugin = nvim-lspconfig;
-			config = toLuaFile ./nvim/plugin/lsp.lua;
+            type = "lua";
+			config = builtins.readFile(./nvim/plugin/lsp.lua);
 		}
 
 		{
 			plugin = nvim-cmp;
-			config = toLuaFile ./nvim/plugin/cmp.lua;
+            type = "lua";
+			config = builtins.readFile(./nvim/plugin/cmp.lua);
 		}
 
 		{
 			plugin = telescope-nvim;
-			config = toLuaFile ./nvim/plugin/telescope.lua;
+            type = "lua";
+			config = builtins.readFile(./nvim/plugin/telescope.lua);
 		}
 
 		{
@@ -171,19 +187,15 @@
 				p.tree-sitter-rust
 				p.tree-sitter-c
 			]));
-			config = toLuaFile ./nvim/plugin/treesitter.lua;
+            type = "lua";
+			config = builtins.readFile(./nvim/plugin/treesitter.lua);
 		}
-
-        {
-            plugin = undotree;
-            config = toLuaFile ./nvim/plugin/undotree.lua;
-        }
 
 		vim-nix
 		
 		neodev-nvim
 		
-		telescope-fzf-native-nvim
+		# telescope-fzf-native-nvim # unused
 		
 		cmp_luasnip
 
@@ -197,6 +209,9 @@
 
         playground # treesitter playground
 	];
+
+	extraLuaConfig = builtins.readFile ./nvim/init.lua;
+
   };
 
 

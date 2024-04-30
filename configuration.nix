@@ -107,7 +107,7 @@
     networkmanagerapplet
 	grim
 	slurp
-	wl-clipboard
+	# wl-clipboard # moved to home.nix
 	rustc
 	cargo
 	killall
@@ -117,9 +117,9 @@
 	bitwarden
 	bitwarden-cli # bw
 	vifm-full
-	ranger # also a file manager
+	ranger 
 	floorp # try fastfox
-	(callPackage ./thorium-browser.nix {})
+	# (callPackage ./thorium-browser.nix {})
 	python3
 	python311Packages.pip
 	git

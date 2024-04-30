@@ -1,11 +1,14 @@
+-- local palettes = {
+-- 	carbonfox = {
+-- 		green = "#87af5f",
+-- 	},
+-- }
+
 require("nightfox").setup({
 	-- options = {
 	-- 	transparent = true,
 	-- },
+	-- palettes = palettes,
 })
-local palettes = {
-	carbonfox = {
-		green = "#87af5f",
-	},
-}
+
 vim.cmd("colorscheme carbonfox")
