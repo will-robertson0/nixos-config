@@ -1,11 +1,11 @@
 require("telescope").setup {
 	extensions = {
 		file_browser = {
-			theme = "carbonfox",
+			theme = "kanagawa-dragon",
 		},
 	},
 }
- 
+
 -- require("telescope").load_extension "file_browser"
 -- this one had to go to init.lua ^ 
 

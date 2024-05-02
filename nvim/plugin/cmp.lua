@@ -16,10 +16,11 @@ cmp.setup {
         ['<C-d>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete {},
-        ['<CR>'] = cmp.mapping.confirm {
+        ['<C-k>'] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Replace,
-            select = true,
+            select = true,  -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         },
+--[[
         ['<Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
@@ -37,13 +38,14 @@ cmp.setup {
             else
                 fallback()
             end
-        end, { 'i', 's' }),
+        end, { 'i', 's' }), 
+]]
+
     },
     sources = {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
     },
 }
-
 
 

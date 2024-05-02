@@ -107,7 +107,7 @@
     networkmanagerapplet
 	grim
 	slurp
-	# wl-clipboard # moved to home.nix
+	wl-clipboard
 	rustc
 	cargo
 	killall

@@ -116,7 +116,7 @@
 
     extraPackages = with pkgs; [
       lua-language-server
-      wl-clipboard
+      # wl-clipboard # moved back to configuration.nix
       rust-analyzer
     ];
 
@@ -138,12 +138,6 @@
             plugin = undotree;
             type = "lua";
             config = builtins.readFile(./nvim/plugin/undotree.lua);
-        }
-
-		{
-			plugin = nightfox-nvim;
-            type = "lua";
-			config = builtins.readFile(./nvim/plugin/nightfox.lua);
         }
 
 		{
@@ -190,6 +184,13 @@
             type = "lua";
 			config = builtins.readFile(./nvim/plugin/treesitter.lua);
 		}
+
+        {
+          plugin = kanagawa-nvim;
+          type = "lua";
+          config = builtins.readFile(./nvim/plugin/kanagawa.lua);
+        }
+
 
 		vim-nix
 		
