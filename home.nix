@@ -118,6 +118,7 @@
       lua-language-server
       # wl-clipboard # moved back to configuration.nix
       rust-analyzer
+      pyright
     ];
 
 	plugins = with pkgs.vimPlugins; [

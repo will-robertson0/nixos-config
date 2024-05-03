@@ -4,6 +4,8 @@ vim.g.maplocalleader = ' '
 
 -- vim.o.guicursor = ""
 
+vim.o.cursorline = true
+
 vim.o.clipboard = 'unnamedplus'
 
 vim.o.number = true
