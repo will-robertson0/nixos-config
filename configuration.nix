@@ -111,11 +111,9 @@
 	rustc
 	cargo
 	killall
-	vscodium
 	chromium
 	tidal-hifi
-	bitwarden
-	bitwarden-cli # bw
+	bitwarden-cli # command: bw
 	vifm-full
 	ranger 
 	floorp # try fastfox
@@ -128,10 +126,11 @@
 	ripgrep
     fish
     pfetch
-    alacritty
     nh
     joplin
     joplin-desktop
+    cowsay
+    figlet
   ];
 
 

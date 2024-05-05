@@ -74,6 +74,7 @@
         # background_image_layout = "scaled";
         # background_tint = "0.0";
         font_family = "JuliaMono";
+        # reminder: ctrl+shft+= to scale text
 	};
   };
 
@@ -119,6 +120,7 @@
       # wl-clipboard # moved back to configuration.nix
       rust-analyzer
       pyright
+      llvmPackages_18.clang-unwrapped
     ];
 
 	plugins = with pkgs.vimPlugins; [
