@@ -6,6 +6,8 @@ vim.g.maplocalleader = ' '
 
 vim.o.cursorline = true
 
+vim.o.wrap = false
+
 vim.o.clipboard = 'unnamedplus'
 
 vim.o.number = true
@@ -74,3 +76,5 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 
 -- not gonna remember this one: chmod +x current file
 -- vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+
+vim.keymap.set("n", "<leader>e", ":lua vim.diagnostic.open_float(0, {scope=\"line\"})<CR>")

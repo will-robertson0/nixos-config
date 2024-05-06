@@ -121,6 +121,7 @@
       rust-analyzer
       pyright
       llvmPackages_18.clang-unwrapped
+      gopls
     ];
 
 	plugins = with pkgs.vimPlugins; [
@@ -183,6 +184,7 @@
 				p.tree-sitter-json
 				p.tree-sitter-rust
 				p.tree-sitter-c
+                p.tree-sitter-go
 			]));
             type = "lua";
 			config = builtins.readFile(./nvim/plugin/treesitter.lua);

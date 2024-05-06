@@ -9,8 +9,8 @@ local on_attach = function(_, bufnr)
   bufmap('<leader>r', vim.lsp.buf.rename)
   bufmap('<leader>a', vim.lsp.buf.code_action)
 
-  bufmap('gd', vim.lsp.buf.definition)  -- these two work
-  bufmap('gD', vim.lsp.buf.declaration)  -- but the rest don't
+  bufmap('gd', vim.lsp.buf.definition)
+  bufmap('gD', vim.lsp.buf.declaration)
   bufmap('gI', vim.lsp.buf.implementation)
   bufmap('<leader>D', vim.lsp.buf.type_definition)
 
@@ -54,3 +54,7 @@ require('lspconfig').clangd.setup {
 	capabilities = capabilities,
 }
 
+require('lspconfig').gopls.setup {
+    on_attach = on_attach,
+	capabilities = capabilities,
+}

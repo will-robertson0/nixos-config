@@ -100,7 +100,7 @@
 	dolphin
 	pulsemixer
 	discord
-	vesktop # discord with screensharing with audio on waylandd
+	# vesktop # discord with screensharing with audio on wayland. maybe unsafe bc vencord
 	libnotify # for mako
 	mako # notification daemon
 	btop
@@ -131,6 +131,7 @@
     joplin-desktop
     cowsay
     figlet
+    go
   ];
 
 
