@@ -16,9 +16,10 @@ cmp.setup {
         ['<C-d>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete {},
-        ['<C-k>'] = cmp.mapping.confirm {
+        ['<Tab>'] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,  -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+            -- used to have this bound to <C-y>
         },
 --[[
         ['<Tab>'] = cmp.mapping(function(fallback)

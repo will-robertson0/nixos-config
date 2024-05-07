@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, lib, ... }:
 
 {
   imports = [
@@ -38,7 +38,18 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
+    DEFAULT_BROWSER = lib.getExe pkgs.firefox;
+    BROWSER = lib.getExe pkgs.firefox;
   };
+
+  xdg.mimeApps.defaultApplications = {
+    "text/html" = "firefox.desktop";
+    "x-scheme-handler/http" = "firefox.desktop";
+    "x-scheme-handler/https" = "firefox.desktop";
+    "x-scheme-handler/about" = "firefox.desktop";
+    "x-scheme-handler/unknown" = "firefox.desktop";
+  };
+
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -196,6 +207,11 @@
           config = builtins.readFile(./nvim/plugin/kanagawa.lua);
         }
 
+        {
+          plugin = alpha-nvim;
+          type = "lua";
+          config = builtins.readFile(./nvim/plugin/alpha.lua);
+        }
 
 		vim-nix
 		
