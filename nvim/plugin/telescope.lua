@@ -8,9 +8,8 @@ require('telescope').setup({
                                        -- the default case_mode is "smart_case"
     	}
   	} ]]
+    -- pickers = { find_files = { hidden = true }}
 })
-
-
 
 -- from primeagen video; i think my telescope extension probably covers this functionality.
 local builtin = require('telescope.builtin')

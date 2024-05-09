@@ -114,8 +114,7 @@
 	chromium
 	tidal-hifi
 	bitwarden-cli # command: bw
-	vifm-full
-	ranger 
+	# ranger 
 	floorp # try fastfox
 	# (callPackage ./thorium-browser.nix {})
 	python3
@@ -132,6 +131,12 @@
     cowsay
     figlet
     go
+    lxqt.lxqt-policykit # for gparted
+    gparted # check that this works now
+    libsForQt5.qt5.qtwayland # hyprland wiki said i neededthese
+    qt6.qtwayland
+    mold
+    pkg-config
   ];
 
 

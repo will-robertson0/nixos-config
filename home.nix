@@ -38,16 +38,16 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
-    DEFAULT_BROWSER = lib.getExe pkgs.firefox;
-    BROWSER = lib.getExe pkgs.firefox;
+    DEFAULT_BROWSER = lib.getExe pkgs.chromium;
+    BROWSER = lib.getExe pkgs.chromium;
   };
 
   xdg.mimeApps.defaultApplications = {
-    "text/html" = "firefox.desktop";
-    "x-scheme-handler/http" = "firefox.desktop";
-    "x-scheme-handler/https" = "firefox.desktop";
-    "x-scheme-handler/about" = "firefox.desktop";
-    "x-scheme-handler/unknown" = "firefox.desktop";
+    "text/html" = "chromium.desktop";
+    "x-scheme-handler/http" = "chromium.desktop";
+    "x-scheme-handler/https" = "chromium.desktop";
+    "x-scheme-handler/about" = "chromium.desktop";
+    "x-scheme-handler/unknown" = "chromium.desktop";
   };
 
 
