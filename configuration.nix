@@ -105,7 +105,7 @@
 	mako # notification daemon
 	btop
     networkmanagerapplet
-	grim
+	grim # v v v these 3 are for screenshotting 
 	slurp
 	wl-clipboard
 	rustc
@@ -115,7 +115,7 @@
 	tidal-hifi
 	bitwarden-cli # command: bw
 	# ranger 
-	floorp # try fastfox
+	# floorp # try fastfox
 	# (callPackage ./thorium-browser.nix {})
 	python3
 	python311Packages.pip
@@ -137,6 +137,7 @@
     qt6.qtwayland
     mold
     pkg-config
+    ladybird
   ];
 
 
