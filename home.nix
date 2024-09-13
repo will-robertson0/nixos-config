@@ -57,6 +57,7 @@
     "x-scheme-handler/https" = "chromium-browser.desktop";
     "x-scheme-handler/about" = "chromium-browser.desktop";
     "x-scheme-handler/unknown" = "chromium-browser.desktop";
+    # find these .desktop files with ls -l /run/current-system/sw/share/applications/
   };
 
 
@@ -268,22 +269,58 @@
 	name = "Corvine";
 	author = "arzg (https://ithub.com/arzg/vim-corvine)";
 	palette = {
-		base00 = "#262626"; # bg0 -- used to be 3a3a3a
-		base01 = "#d78787";
-		base02 = "#87af5f";
-		base03 = "#d7d7af";
-		base04 = "#87afd7";
-		base05 = "#afafd7";
-		base06 = "#87d7d7";
-		base07 = "#c6c6c6";
-		base08 = "#626262";
-		base09 = "#ffafaf";
-		base0A = "#afd787";
-		base0B = "#d7d787";
-		base0C = "#87d7ff";
-		base0D = "#d7afd7";
-		base0E = "#5fd7d7";
-		base0F = "#eeeeee";
+		base00 = "#181616"; # bg0 -- used to be 3a3a3a
+		base01 = "#C4746E";
+		base02 = "#8A9A7B";
+		base03 = "#C4B28A";
+		base04 = "#8BA4B0";
+		base05 = "#A292A3";
+		base06 = "#8EA4A2";
+		base07 = "#C8C093";
+		base08 = "#A6A69C";
+		base09 = "#E46876";
+		base0A = "#87A987";
+		base0B = "#E6C384";
+		base0C = "#7FB4CA";
+		base0D = "#938AA9";
+		base0E = "#7AA89F";
+		base0F = "#C5C9C5";
 	};
   };
 }
+
+# kanagawa-dragon
+# "#181616",
+# "#C4746E",
+# "#8A9A7B",
+# "#C4B28A",
+# "#8BA4B0",
+# "#A292A3",
+# "#8EA4A2",
+# "#C8C093",
+# "#A6A69C",
+# "#E46876",
+# "#87A987",
+# "#E6C384",
+# "#7FB4CA",
+# "#938AA9",
+# "#7AA89F",
+# "#C5C9C5"
+
+# corvine, edited
+# "#262626";
+# "#d78787";
+# "#87af5f";
+# "#d7d7af";
+# "#87afd7";
+# "#afafd7";
+# "#87d7d7";
+# "#c6c6c6";
+# "#626262";
+# "#ffafaf";
+# "#afd787";
+# "#d7d787";
+# "#87d7ff";
+# "#d7afd7";
+# "#5fd7d7";
+# "#eeeeee";
