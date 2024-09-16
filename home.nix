@@ -122,6 +122,11 @@
   # };
 
 
+  # discord
+  # pkgs.discord = {
+  #   # nss = pkgs.nss_/*attribute name here*/;
+  #   override = { nss = nss_latest; };
+  # };
 
   # neovim
   programs.neovim = 
