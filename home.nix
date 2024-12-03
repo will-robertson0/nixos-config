@@ -83,7 +83,7 @@
   # kitty!
   programs.kitty = {
   	enable = true;
-    theme = "Corvine"; # select from kitty +kitten themes
+    # theme = "Corvine"; # select from kitty +kitten themes
     shellIntegration.enableFishIntegration = true;
 	settings = {
 		background_opacity = "0.84"; # 0.84
