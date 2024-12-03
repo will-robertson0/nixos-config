@@ -4,6 +4,15 @@
 
 { config, pkgs, inputs, ... }:
 
+# this declaration from https://discourse.nixos.org/t/installing-only-a-single-package-from-unstable/5598/3
+# should allow prepending `unstable.` to a package name
+# originally for new joplin version
+let
+  unstable = import
+    (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/tree/nixpkgs-unstable)
+    # reuse the current configuration
+    { config = config.nixpkgs.config; };
+in
 {
   imports =
   [ # Include the results of the hardware scan.
@@ -83,51 +92,55 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+
+
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+
   environment.systemPackages = with pkgs; [
-	neovim
-	wget
-	neofetch
-	firefox
-	rofi-wayland
-	hyprpaper
-	waybar
-#	(waybar.overrideAttrs (oldAttrs: {
-#		mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-#		})
-#	)
-	dolphin
-	pulsemixer
-	discord
-	# vesktop # discord with screensharing with audio on wayland. maybe unsafe bc vencord
-	libnotify # for mako
-	mako # notification daemon
-	btop
+    neovim
+    wget
+    neofetch
+    firefox
+    rofi-wayland
+    hyprpaper
+    waybar
+    #	(waybar.overrideAttrs (oldAttrs: {
+    #		mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+    #		})
+    #	)
+    dolphin
+    pulsemixer
+    discord
+    # vesktop # discord with screensharing with audio on wayland. maybe unsafe bc vencord
+    libnotify # for mako
+    mako # notification daemon
+    btop
     networkmanagerapplet
-	grim # v v v these 3 are for screenshotting 
-	slurp
-	wl-clipboard
-	rustc
-	cargo
-	killall
-	chromium
-	tidal-hifi
-	bitwarden-cli # command: bw
-	# ranger 
-	# floorp # try fastfox
-	# (callPackage ./thorium-browser.nix {})
-	python3
-	python311Packages.pip
-	git
-	gh
-	cava
-	ripgrep
+    grim # v v v these 3 are for screenshotting 
+    slurp
+    wl-clipboard
+    rustc
+    cargo
+    killall
+    chromium
+    tidal-hifi
+    bitwarden-cli # command: bw
+    # ranger 
+    # floorp # try fastfox
+    # (callPackage ./thorium-browser.nix {})
+    python3
+    python311Packages.pip
+    git
+    gh
+    cava
+    ripgrep
     fish
     pfetch
     nh
     joplin
-    joplin-desktop
+    unstable.joplin-desktop
     cowsay
     figlet
     go
@@ -138,7 +151,9 @@
     mold
     pkg-config
     ladybird
+    github-desktop
   ];
+
 
 
 
@@ -174,7 +189,7 @@
 	WLR_NO_HARDWARE_CURSORS = "1";
   };
   hardware = {
-  	opengl.enable = true;
+  	graphics.enable = true; # this line changed from opengl.enable to graphics.enable
 	# most wayland compositors need this
 	nvidia.modesetting.enable = true;
   };
