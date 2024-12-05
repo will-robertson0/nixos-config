@@ -4,14 +4,18 @@
 
 { config, pkgs, inputs, ... }:
 
+
 # this declaration from https://discourse.nixos.org/t/installing-only-a-single-package-from-unstable/5598/3
 # should allow prepending `unstable.` to a package name
 # originally for new joplin version
 let
   unstable = import
-    (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/tree/nixpkgs-unstable)
-    # reuse the current configuration
-    { config = config.nixpkgs.config; };
+  (builtins.fetchTarball {
+    url = "https://github.com/nixos/nixpkgs/tarball/nixpkgs-unstable";
+    sha256 = "1c9nwlhsv3da5d8wg2fa0r7kl0v0icidq100v51ax99brpj1idhl";
+  })
+  # reuse the current configuration
+  { config = config.nixpkgs.config; };
 in
 {
   imports =
@@ -153,7 +157,6 @@ in
     ladybird
     github-desktop
   ];
-
 
 
 
