@@ -8,15 +8,15 @@
 # this declaration from https://discourse.nixos.org/t/installing-only-a-single-package-from-unstable/5598/3
 # should allow prepending `unstable.` to a package name
 # originally for new joplin version
-let
-  unstable = import
-  (builtins.fetchTarball {
-    url = "https://github.com/nixos/nixpkgs/tarball/nixpkgs-unstable";
-    sha256 = "1c9nwlhsv3da5d8wg2fa0r7kl0v0icidq100v51ax99brpj1idhl";
-  })
-  # reuse the current configuration
-  { config = config.nixpkgs.config; };
-in
+# let
+#   unstable = import
+#   (builtins.fetchTarball {
+#     url = "https://github.com/nixos/nixpkgs/tarball/nixpkgs-unstable";
+#     sha256 = "1c9nwlhsv3da5d8wg2fa0r7kl0v0icidq100v51ax99brpj1idhl";
+#   })
+#   # reuse the current configuration
+#   { config = config.nixpkgs.config; };
+# in
 {
   imports =
   [ # Include the results of the hardware scan.
@@ -94,8 +94,14 @@ in
   services.getty.autologinUser = "wjr";
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
+  nixpkgs.config = {
+    allowUnfree = true;
+    # packageOverrides = pkgs: {
+    #   unstable = import <nixpkgs-unstable> {
+    #     config = config.nixpkgs.config;
+    #   };
+    # };
+  };
 
 
 
@@ -110,10 +116,10 @@ in
     rofi-wayland
     hyprpaper
     waybar
-    #	(waybar.overrideAttrs (oldAttrs: {
-    #		mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-    #		})
-    #	)
+    (waybar.overrideAttrs (oldAttrs: {
+    	mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+    	})
+    )
     dolphin
     pulsemixer
     discord
@@ -121,11 +127,11 @@ in
     libnotify # for mako
     mako # notification daemon
     btop
-    networkmanagerapplet
-    grim # v v v these 3 are for screenshotting 
-    slurp
-    wl-clipboard
-    rustc
+    # networkmanagerapplet # UNCOMMENT
+    grim         # | these 3 are for screenshotting 
+    slurp        # |
+    wl-clipboard # |
+    # rustc # UNCOMMENT
     cargo
     killall
     chromium
@@ -143,11 +149,11 @@ in
     fish
     pfetch
     nh
-    joplin
-    unstable.joplin-desktop
+    # joplin
+    # joplin-desktop # previously prepended unstable.
     cowsay
     figlet
-    go
+    # go # UNCOMMENT
     lxqt.lxqt-policykit # for gparted
     gparted # check that this works now
     libsForQt5.qt5.qtwayland # hyprland wiki said i neededthese
@@ -156,6 +162,7 @@ in
     pkg-config
     ladybird
     github-desktop
+    egl-wayland # part of wiki.hyprlang.org/nvidia instructions
   ];
 
 
@@ -164,7 +171,7 @@ in
   fonts.packages = with pkgs; [
     iosevka
     material-design-icons
-	nerdfonts
+	# nerdfonts
     julia-mono
   ];
 
@@ -183,7 +190,6 @@ in
   # hyprland
   programs.hyprland = {
 	enable = true;
-	#nvidiaPatches = true;
 	xwayland.enable = true;
   };
   environment.sessionVariables = {
@@ -193,8 +199,6 @@ in
   };
   hardware = {
   	graphics.enable = true; # this line changed from opengl.enable to graphics.enable
-	# most wayland compositors need this
-	nvidia.modesetting.enable = true;
   };
   # this might make hyprland run on startup. source also suggests:
     # services.getty.autologinUser = "wjr";
@@ -203,6 +207,25 @@ in
   #     dbus-run-session Hyprland
   # fi
   # '';
+
+
+  # nvidia stuff
+
+  hardware.nvidia = {
+    modesetting.enable = true;
+    powerManagement.enable = false;
+    open = false;
+    nvidiaSettings = true;
+    package = config.boot.kernelPackages.nvidiaPackages.production; # changed from .stable
+  };
+
+  # nix.allowedUnfree = [
+  #   "nvidia-x11"
+  #   "nvidia-settings"
+  #   "libXNVCtrl" # nvidia
+  # ];
+
+  services.xserver.videoDrivers = ["nvidia"]; # may not need this
 
 
 
