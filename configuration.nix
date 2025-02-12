@@ -114,7 +114,7 @@
     neofetch
     firefox
     rofi-wayland
-    hyprpaper
+    # hyprpaper
     waybar
     (waybar.overrideAttrs (oldAttrs: {
     	mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
@@ -156,13 +156,13 @@
     # go # UNCOMMENT
     lxqt.lxqt-policykit # for gparted
     gparted # check that this works now
-    libsForQt5.qt5.qtwayland # hyprland wiki said i neededthese
+    # libsForQt5.qt5.qtwayland # hyprland wiki said i neededthese
     qt6.qtwayland
     mold
     pkg-config
     ladybird
     github-desktop
-    egl-wayland # part of wiki.hyprlang.org/nvidia instructions
+    # egl-wayland # part of wiki.hyprlang.org/nvidia instructions
   ];
 
 
@@ -187,19 +187,40 @@
 
 
 
+  # sway window manager
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+  };
+
+  services.gnome.gnome-keyring.enable = true;
+  security.polkit.enable = true;
+
+  services.greetd = {                                                      
+    enable = true;                                                         
+    settings = {                                                           
+      default_session = {                                                  
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
+        user = "greeter";                                                  
+      };                                                                   
+    };                                                                     
+  };
+
+
+
   # hyprland
-  programs.hyprland = {
-	enable = true;
-	xwayland.enable = true;
-  };
-  environment.sessionVariables = {
-	# NIXOS_OZONE_WL = "1";
-	# if cursor becomes invisible:
-	WLR_NO_HARDWARE_CURSORS = "1";
-  };
-  hardware = {
-  	graphics.enable = true; # this line changed from opengl.enable to graphics.enable
-  };
+ #  programs.hyprland = {
+	# enable = true;
+	# xwayland.enable = true;
+ #  };
+ #  environment.sessionVariables = {
+	# # NIXOS_OZONE_WL = "1";
+	# # if cursor becomes invisible:
+	# WLR_NO_HARDWARE_CURSORS = "1";
+ #  };
+ #  hardware = {
+ #  	graphics.enable = true; # this line changed from opengl.enable to graphics.enable
+ #  };
   # this might make hyprland run on startup. source also suggests:
     # services.getty.autologinUser = "wjr";
   # environment.interactiveShellInit = ''
@@ -211,21 +232,15 @@
 
   # nvidia stuff
 
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = false;
-    open = false;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.production; # changed from .stable
-  };
-
-  # nix.allowedUnfree = [
-  #   "nvidia-x11"
-  #   "nvidia-settings"
-  #   "libXNVCtrl" # nvidia
-  # ];
-
-  services.xserver.videoDrivers = ["nvidia"]; # may not need this
+  # hardware.nvidia = {
+  #   modesetting.enable = true;
+  #   powerManagement.enable = false;
+  #   open = false;
+  #   nvidiaSettings = true;
+  #   package = config.boot.kernelPackages.nvidiaPackages.production; # changed from .stable
+  # };
+  #
+  # services.xserver.videoDrivers = ["nvidia"]; # may not need this
 
 
 

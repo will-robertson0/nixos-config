@@ -101,6 +101,36 @@
 
 
 
+  # sway
+  wayland.windowManager.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true; # Fixes common issues with GTK 3 apps
+    config = rec {
+      modifier = "Mod4";
+      terminal = "kitty"; 
+      startup = [{
+        command = "nm-applet --indicator & /home/wjr/.config/waybar/launch.sh & mako";
+      }];
+    };
+  };
+
+  services.gnome-keyring.enable = true;
+
+  # kanshi systemd service (from wiki.nixos.org/wiki/Sway)
+  systemd.user.services.kanshi = {
+    # description = "kanshi daemon";
+    environment = {
+      WAYLAND_DISPLAY="wayland-1";
+      DISPLAY = ":0";
+    }; 
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = ''${pkgs.kanshi}/bin/kanshi -c kanshi_config_file'';
+    };
+  };
+
+
+
   # programs.alacritty = {
   #   enable = true;
   #   settings = {
