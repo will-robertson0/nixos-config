@@ -108,9 +108,95 @@
     config = rec {
       modifier = "Mod4";
       terminal = "kitty"; 
+      menu = "rofi -show drun";
+
       startup = [{
-        command = "nm-applet --indicator & /home/wjr/.config/waybar/launch.sh & mako";
+        command = "nm-applet --indicator & mako & killall -q waybar & waybar -c ~/.config/waybar/config_vertical -s ~/.config/waybar/style_vertical.css";
       }];
+
+      bars = [{}];
+
+      gaps = {
+        outer = 8;
+        inner = 3;
+      };
+
+      keybindings = let
+          mod = config.wayland.windowManager.sway.config.modifier;
+      in lib.mkOptionDefault {
+        "${mod}+q" = "kill";
+      };
+
+      output = {
+        DP-2 = {
+          mode = "1920x1080@239.760Hz";
+          pos = "0 0";
+          bg = "/home/wjr/nixos/media/doorofperception.com-hiro_isono-header.jpg fill";
+        };
+        HDMI-A-1 = {
+          mode = "1920x1080@60Hz";
+          pos = "1920 0";
+          bg = "/home/wjr/nixos/media/doorofperception.com-hiro_isono-header.jpg fill";
+        };
+      };
+
+      floating.titlebar = false;
+# "#181616",
+# "#C4746E",
+# "#8A9A7B",
+# "#C4B28A",
+# "#8BA4B0",
+# "#A292A3",
+# "#8EA4A2",
+# "#C8C093",
+# "#A6A69C",
+# "#E46876",
+# "#87A987",
+# "#E6C384",
+# "#7FB4CA",
+# "#938AA9",
+# "#7AA89F",
+# "#C5C9C5"
+
+      colors = {
+        focused = {
+          background = "#181616";
+          border = "#8A9A7B";
+          childBorder = "#C5C9C5";
+          indicator = "#7FB4CA";
+          text = "#7AA89F";
+        };
+        focusedInactive = {
+          background = "#333333";
+          border = "#5f676a";
+          childBorder = "#ffffff";
+          indicator = "#484e50";
+          text = "#5f676a";
+        };
+        unfocused = {
+          background = "#333333";
+          border = "#222222";
+          childBorder = "#888888";
+          indicator = "#292d2e";
+          text = "#222222";
+        };
+        urgent = {
+          background = "#181616";
+          border = "#E46876";
+          childBorder = "#ffffff";
+          indicator = "#E46876";
+          text = "#E46876";
+        };
+        placeholder = {
+          background = "#000000";
+          border = "#0c0c0c";
+          childBorder = "#ffffff";
+          indicator = "#000000";
+          text = "#0c0c0c";
+        };
+        background = "#181616";
+      };
+
     };
   };
 
