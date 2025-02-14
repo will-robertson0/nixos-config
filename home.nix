@@ -75,6 +75,8 @@
 		pu = "push";
 		co = "checkout";
 		cm = "commit";
+        st = "status";
+        ad = "add .";
 	};
   };
 
@@ -86,7 +88,7 @@
     # theme = "Corvine"; # select from kitty +kitten themes
     shellIntegration.enableFishIntegration = true;
 	settings = {
-		background_opacity = "0.84"; # 0.84
+		background_opacity = "0.98"; # 0.84
 		confirm_os_window_close = 0;
 		scrollback_lines = "10000";
 		# window_padding_width = 8;
@@ -97,6 +99,7 @@
         font_family = "JuliaMono";
         # reminder: ctrl+shft+= to scale text
 	};
+    extraConfig = "include ~/nixos/media/kanagawa-dragon.conf\n";
   };
 
 
@@ -105,26 +108,34 @@
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.gtk = true; # Fixes common issues with GTK 3 apps
+    # xwayland = true; # will uncomment this when i run into issues. supposedly "needed for the default configuration of sway."
+    checkConfig = false; # had to do this to fix wallpaper image not being found
+
     config = rec {
+
       modifier = "Mod4";
       terminal = "kitty"; 
       menu = "rofi -show drun";
 
-      startup = [{
-        command = "nm-applet --indicator & mako & killall -q waybar & waybar -c ~/.config/waybar/config_vertical -s ~/.config/waybar/style_vertical.css";
-      }];
+      startup = [
+        { command = "nm-applet --indicator"; }
+        { command = "mako"; }
+        # { command = "killall -q waybar"; always = true; }
+        # { command = "waybar -c ~/.config/waybar/config_vertical -s ~/.config/waybar/style_vertical.css"; always = true; }
+      ];
 
-      bars = [{}];
+      bars = [{command = "waybar -c ~/.config/waybar/config_vertical -s ~/.config/waybar/style_vertical.css";}];
 
       gaps = {
-        outer = 8;
+        outer = 4;
         inner = 3;
       };
 
-      keybindings = let
-          mod = config.wayland.windowManager.sway.config.modifier;
-      in lib.mkOptionDefault {
-        "${mod}+q" = "kill";
+      input = {
+        "1133:16500:Logitech_G305" = {
+          accel_profile = "flat";
+          pointer_accel = "0.05";
+        };
       };
 
       output = {
@@ -140,50 +151,80 @@
         };
       };
 
+      workspaceOutputAssign = [
+        {
+          output = "HDMI-A-1";
+          workspace = "2";
+        }
+      ];
+
+      window = {
+        titlebar = false;
+        border = 1;
+      };
+
       floating.titlebar = false;
-# "#181616",
-# "#C4746E",
-# "#8A9A7B",
-# "#C4B28A",
-# "#8BA4B0",
-# "#A292A3",
-# "#8EA4A2",
-# "#C8C093",
-# "#A6A69C",
-# "#E46876",
-# "#87A987",
-# "#E6C384",
-# "#7FB4CA",
-# "#938AA9",
-# "#7AA89F",
-# "#C5C9C5"
+
+      keybindings = let
+        mod = config.wayland.windowManager.sway.config.modifier;
+      in lib.mkOptionDefault {
+        "${mod}+q" = "kill";
+
+        "${mod}+a" = "splith";
+        "${mod}+w" = "splitv";
+
+        "${mod}+space" = "floating toggle";
+
+        "${mod}+Shift+s" = "exec grim -l 0 -g \"$(slurp)\" - | wl-copy -t image/png";
+        
+        "${mod}+Shift+0" = "move container to workspace number 10; workspace number 10";
+        "${mod}+Shift+1" = "move container to workspace number 1; workspace number 1";
+        "${mod}+Shift+2" = "move container to workspace number 2; workspace number 2";
+        "${mod}+Shift+3" = "move container to workspace number 3; workspace number 3";
+        "${mod}+Shift+4" = "move container to workspace number 4; workspace number 4";
+        "${mod}+Shift+5" = "move container to workspace number 5; workspace number 5";
+        "${mod}+Shift+6" = "move container to workspace number 6; workspace number 6";
+        "${mod}+Shift+7" = "move container to workspace number 7; workspace number 7";
+        "${mod}+Shift+8" = "move container to workspace number 8; workspace number 8";
+        "${mod}+Shift+9" = "move container to workspace number 9; workspace number 9";
+
+        "${mod}+Control+l" = "resize shrink width 10 px";
+        "${mod}+Control+k" = "resize grow height 10 px";
+        "${mod}+Control+j" = "resize shrink height 10 px";
+        "${mod}+Control+h" = "resize grow width 10 px";
+      };
+
+# "#181616", "#C4746E", "#8A9A7B", "#C4B28A",
+# "#8BA4B0", "#A292A3", "#8EA4A2", "#C8C093",
+# "#A6A69C", "#E46876", "#87A987", "#E6C384",
+# "#7FB4CA", "#938AA9", "#7AA89F", "#C5C9C5"
 
       colors = {
         focused = {
           background = "#181616";
           border = "#8A9A7B";
-          childBorder = "#C5C9C5";
-          indicator = "#7FB4CA";
-          text = "#7AA89F";
+          childBorder = "#87A987";
+          indicator = "#87A987";
+          text = "#A6A69C";
         };
         focusedInactive = {
-          background = "#333333";
+          background = "#181616";
           border = "#5f676a";
-          childBorder = "#ffffff";
-          indicator = "#484e50";
+          childBorder = "#595959";
+          indicator = "#595959";
           text = "#5f676a";
         };
         unfocused = {
-          background = "#333333";
+          background = "#181616";
           border = "#222222";
-          childBorder = "#888888";
-          indicator = "#292d2e";
+          childBorder = "#595959";
+          indicator = "#595959";
           text = "#222222";
         };
         urgent = {
           background = "#181616";
           border = "#E46876";
-          childBorder = "#ffffff";
+          childBorder = "#E46876";
           indicator = "#E46876";
           text = "#E46876";
         };
@@ -191,7 +232,7 @@
           background = "#000000";
           border = "#0c0c0c";
           childBorder = "#ffffff";
-          indicator = "#000000";
+          indicator = "#ffffff";
           text = "#0c0c0c";
         };
         background = "#181616";

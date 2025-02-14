@@ -127,11 +127,11 @@
     libnotify # for mako
     mako # notification daemon
     btop
-    # networkmanagerapplet # UNCOMMENT
+    networkmanagerapplet
     grim         # | these 3 are for screenshotting 
     slurp        # |
     wl-clipboard # |
-    # rustc # UNCOMMENT
+    rustc 
     cargo
     killall
     chromium
@@ -153,7 +153,7 @@
     # joplin-desktop # previously prepended unstable.
     cowsay
     figlet
-    # go # UNCOMMENT
+    go
     lxqt.lxqt-policykit # for gparted
     gparted # check that this works now
     # libsForQt5.qt5.qtwayland # hyprland wiki said i neededthese
@@ -163,6 +163,7 @@
     ladybird
     github-desktop
     # egl-wayland # part of wiki.hyprlang.org/nvidia instructions
+    nodejs_23
   ];
 
 
