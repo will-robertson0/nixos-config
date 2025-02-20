@@ -38,25 +38,16 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
-    DEFAULT_BROWSER = lib.getExe pkgs.chromium;
-    BROWSER = lib.getExe pkgs.chromium;
-  };
-
-  xdg.desktopEntries = {
-    ladybird = {
-      name = "Ladybird";
-      genericName = "Web Browser";
-      exec = "Ladybird";
-      terminal = false;
-    };
+    DEFAULT_BROWSER = "firefox"; # was: lib.getExe pkgs.firefox;
+    BROWSER = "firefox"; # was: lib.getExe pkgs.firefox;
   };
 
   xdg.mimeApps.defaultApplications = {
-    "text/html" = "chromium-browser.desktop";
-    "x-scheme-handler/http" = "chromium-browser.desktop";
-    "x-scheme-handler/https" = "chromium-browser.desktop";
-    "x-scheme-handler/about" = "chromium-browser.desktop";
-    "x-scheme-handler/unknown" = "chromium-browser.desktop";
+    "text/html" = "firefox-browser.desktop";
+    "x-scheme-handler/http" = "firefox-browser.desktop";
+    "x-scheme-handler/https" = "firefox-browser.desktop";
+    "x-scheme-handler/about" = "firefox-browser.desktop";
+    "x-scheme-handler/unknown" = "firefox-browser.desktop";
     # find these .desktop files with ls -l /run/current-system/sw/share/applications/
   };
 
@@ -93,7 +84,7 @@
 		scrollback_lines = "10000";
 		# window_padding_width = 8;
         shell = "fish";
-        # background_image = "/home/wjr/Downloads/IMG_20231228_013528_973.png";
+        # background_image = "/home/wjr/Downloads/beast_mode.png";
         # background_image_layout = "scaled";
         # background_tint = "0.0";
         font_family = "JuliaMono";
@@ -120,11 +111,12 @@
       startup = [
         { command = "nm-applet --indicator"; }
         { command = "mako"; }
-        # { command = "killall -q waybar"; always = true; }
-        # { command = "waybar -c ~/.config/waybar/config_vertical -s ~/.config/waybar/style_vertical.css"; always = true; }
+        # { command = "kill $(pidof waybar)"; always=true; }
+        { command = "waybar -c ~/.config/waybar/config_vertical -s ~/.config/waybar/style_vertical.css"; }
       ];
 
-      bars = [{command = "waybar -c ~/.config/waybar/config_vertical -s ~/.config/waybar/style_vertical.css";}];
+      # bars = [{command = "waybar -c /home/wjr/.config/waybar/config_vertical -s /home/wjr/.config/waybar/style_vertical.css";}];
+      bars = [];
 
       gaps = {
         outer = 4;
@@ -155,6 +147,10 @@
         {
           output = "HDMI-A-1";
           workspace = "2";
+        }
+        {
+          output = "DP-2";
+          workspace = "1";
         }
       ];
 
@@ -294,12 +290,15 @@
 	vimdiffAlias = true;
 
     extraPackages = with pkgs; [
+      # find language servers at: https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
       lua-language-server
       # wl-clipboard # moved back to configuration.nix
       rust-analyzer
       pyright
       llvmPackages_18.clang-unwrapped
       gopls
+      typescript-language-server
+      superhtml
     ];
 
 	plugins = with pkgs.vimPlugins; [
@@ -353,6 +352,7 @@
 		}
 
 		{
+            # text coloring
 			plugin = (nvim-treesitter.withPlugins (p: [
 				p.tree-sitter-nix
 				p.tree-sitter-vim
@@ -363,6 +363,9 @@
 				p.tree-sitter-rust
 				p.tree-sitter-c
                 p.tree-sitter-go
+                p.tree-sitter-javascript
+                p.tree-sitter-html
+                p.tree-sitter-css
 			]));
             type = "lua";
 			config = builtins.readFile(./nvim/plugin/treesitter.lua);

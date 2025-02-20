@@ -163,7 +163,8 @@
     ladybird
     github-desktop
     # egl-wayland # part of wiki.hyprlang.org/nvidia instructions
-    nodejs_23
+    nodejs_20
+    typescript
   ];
 
 
@@ -197,14 +198,24 @@
   services.gnome.gnome-keyring.enable = true;
   security.polkit.enable = true;
 
-  services.greetd = {                                                      
-    enable = true;                                                         
-    settings = {                                                           
-      default_session = {                                                  
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
-        user = "greeter";                                                  
-      };                                                                   
-    };                                                                     
+  # services.greetd = {                                                      
+  #   enable = true;                                                         
+  #   settings = {                                                           
+  #     default_session = {                                                  
+  #       command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
+  #       user = "greeter";                                                  
+  #     };                                                                   
+  #   };                                                                     
+  # };
+  services.greetd = {
+    enable = true;
+    settings = rec {
+      initial_session = {
+        command = "${pkgs.sway}/bin/sway";
+        user = "wjr";
+      };
+      default_session = initial_session;
+    };
   };
 
   hardware = {
