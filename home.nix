@@ -145,12 +145,12 @@
 
       workspaceOutputAssign = [
         {
-          output = "HDMI-A-1";
-          workspace = "2";
-        }
-        {
           output = "DP-2";
           workspace = "1";
+        }
+        {
+          output = "HDMI-A-1";
+          workspace = "2";
         }
       ];
 
@@ -172,6 +172,7 @@
         "${mod}+space" = "floating toggle";
 
         "${mod}+Shift+s" = "exec grim -l 0 -g \"$(slurp)\" - | wl-copy -t image/png";
+        "${mod}+b" = "exec firefox";
         
         "${mod}+Shift+0" = "move container to workspace number 10; workspace number 10";
         "${mod}+Shift+1" = "move container to workspace number 1; workspace number 1";

@@ -165,6 +165,7 @@
     # egl-wayland # part of wiki.hyprlang.org/nvidia instructions
     nodejs_20
     typescript
+    ollama
   ];
 
 
