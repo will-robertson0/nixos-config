@@ -401,6 +401,10 @@
 		nvim-web-devicons
 
         playground # treesitter playground
+
+        nui-nvim
+        plenary-nvim
+        leetcode-nvim # fixme pls
 	];
 
 	extraLuaConfig = builtins.readFile ./nvim/init.lua;
