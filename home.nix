@@ -143,16 +143,16 @@
         };
       };
 
-      # workspaceOutputAssign = [
-      #   {
-      #     output = "DP-2";
-      #     workspace = "1";
-      #   }
-      #   {
-      #     output = "HDMI-A-1";
-      #     workspace = "2";
-      #   }
-      # ];
+      workspaceOutputAssign = [
+        {
+          output = "HDMI-A-1";
+          workspace = "2";
+        }
+        {
+          output = "DP-2";
+          workspace = "1";
+        }
+      ];
 
       window = {
         titlebar = false;

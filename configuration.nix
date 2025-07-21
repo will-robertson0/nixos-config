@@ -160,12 +160,13 @@
     qt6.qtwayland
     mold
     pkg-config
-    ladybird
+    # ladybird # marked as insecure. cool browser iirc
     github-desktop
     # egl-wayland # part of wiki.hyprlang.org/nvidia instructions
     nodejs_20
     typescript
     ollama
+    pipes # pipes.sh
   ];
 
 
