@@ -134,7 +134,6 @@
     rustc 
     cargo
     killall
-    chromium
     tidal-hifi
     bitwarden-cli # command: bw
     # ranger 
@@ -167,6 +166,7 @@
     typescript
     ollama
     pipes # pipes.sh
+    gmetronome
   ];
 
 
