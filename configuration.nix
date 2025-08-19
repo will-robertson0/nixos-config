@@ -120,7 +120,7 @@
     	mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
     	})
     )
-    dolphin
+    kdePackages.dolphin
     pulsemixer
     discord
     # vesktop # discord with screensharing with audio on wayland. maybe unsafe bc vencord
